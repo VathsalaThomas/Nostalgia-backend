@@ -1,11 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const ImageDetail = require('../config'); // Update the path to your config file
-
+const ImageDetail = require('../config'); // Adjust path as needed
+const serverless = require('serverless-http');
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
+// Define your routes
 app.get("/", async (req, res) => {
     const response = await ImageDetail.ImageDetail.get();
     const resp = response.docs.map(doc => doc.data());
@@ -28,6 +30,8 @@ app.post("/addDetails", async (req, res) => {
     const data = req.body;
     await ImageDetail.ImageGallery.add(data);
     res.send({ msg: 'Added Details' });
+   
 });
-
-module.exports = app;
+app.use('/.netlify/functions/api',app);
+module.exports.handler = serverless(app);
+//module.exports = app;

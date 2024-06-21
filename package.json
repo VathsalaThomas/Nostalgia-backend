@@ -3,7 +3,9 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "firebase": "^10.12.2",
-    "nodemon": "^3.1.1"
+    "netlify-lambda": "^2.0.16",
+    "nodemon": "^3.1.1",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "serverless": "^2.50.0"
